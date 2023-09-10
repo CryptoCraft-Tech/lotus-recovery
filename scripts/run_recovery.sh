@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 
 CORES=$1
 SECTOR_ID=$2
@@ -19,7 +18,7 @@ export FIL_PROOFS_USE_GPU_COLUMN_BUILDER=1
 export FIL_PROOFS_USE_GPU_TREE_BUILDER=1
 export FIL_PROOFS_MULTICORE_SDR_CORES="${CORES}"
 
-env CUDA_VISIBLE_DEVICES=${CUDANUM} TMPDIR=/storage/recotmp${CUDANUM} numactl --physcpubind=10-15,26-31,42-47,58-63 lotus-miner sectors recover --recovery-metadata=/storage/sectors-f02228866.json --recovery-key=+q28qE44PC3NdoNKuIuIlHaoVX9sg5eT6dCJ9fwdTK0= --recovering-from=/mnt/data4 --recovering-to=/storage/recover/recovering-to --is-deal=true --by-unsealed=false ${SECTOR_ID}
+env CUDA_VISIBLE_DEVICES=${CUDANUM} TMPDIR=/storage/recotmp${CUDANUM} lotus-recovery sectors recover --recovery-metadata=/storage/sectors-f02228866.json --recovery-key=+q28qE44PC3NdoNKuIuIlHaoVX9sg5eT6dCJ9fwdTK0= --recovering-from=/mnt/data4 --recovering-to=/storage/recover/recovering-to --is-deal=true --by-unsealed=false ${SECTOR_ID}
 
 if [ -e "/storage/recover/recovering-to/cache/s-t08866-${SECTOR_ID}/t_aux" ]; then
     mv "/storage/recover/recovering-to/cache/s-t08866-${SECTOR_ID}" "/storage${SID}/cache/"

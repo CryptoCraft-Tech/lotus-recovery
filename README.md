@@ -198,16 +198,23 @@ lotus-recovery sectors recover \
 - 执行恢复命令。
   
     ```bash
-        lotus-recovery sectors recover \
-        --recovery-metadata=/data/recover/sectors-t01000.json \ 
-        --recovery-key=N0nvYJ9sp+dczDbj4PWftUmJ3Wsn9xYyEtMEMh2D9TA= \
-        --recovering-from=/data/from \
-        --recovering-to=/data/recover/recovering-to 
-        --is-deal=true --by-unsealed=false 2
+    lotus-recovery sectors recover \
+    --recovery-metadata=/data/recover/sectors-t01000.json \ 
+    --recovery-key=N0nvYJ9sp+dczDbj4PWftUmJ3Wsn9xYyEtMEMh2D9TA= \
+    --recovering-from=/data/from \
+    --recovering-to=/data/recover/recovering-to 
+    --is-deal=true --by-unsealed=false 2
     ```
 
     命令执行完成后，程序从json文件`CarFiles`路径读取恢复所需要的Car文件进行`ReplicaUpdate`过程。详细参数释义及流程可以直接参考[3.2 使用Car文件恢复](#32-使用car文件恢复)
 
 ## 5. 批量恢复
 
-TODO:功能已具备，文档待完成。
+在面临大规模的数据丢失时，需要进行批量恢复，单个进程的运行就无法满足我们的需求。由于每次升级将恢复程序合并到lotus调度比较占用精力，我们提供shell脚本来满足这一需求。脚本完成功能如下：
+
+- 单个Worker机器并发跑多个恢复进程。
+- 多个Worker机器任务分配调度。
+- 恢复完成后自动落盘。
+- 多个存储目录均匀落盘。
+
+TODO:具体用法

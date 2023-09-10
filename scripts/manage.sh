@@ -6,10 +6,10 @@ WORKER_LIST="/storage/worker.list"
 RECOVERY_SCRIPT="/storage/run_recovery.sh"
 ALLOWCORES_LIST="allowcores.list"
 MAX_NUM=14
+STORAGE_NUM=8
 
 i=1
 j=1
-
 update_all_nums() {
     while read -r worker_ip; do
         (
@@ -49,7 +49,7 @@ while read -r sectorid; do
     sed -i '1d' $SECTORSID_LIST
 
     ((i++))
-    if [ "$i" -eq 16 ]; then
+    if [ "$i" -eq "$STORAGE_NUM" ]; then
         i=1
     fi
     if [ "$j" -eq 3000 ]; then
