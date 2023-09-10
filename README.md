@@ -18,7 +18,7 @@
 使用命令`lotus-recovery sectors export --miner=f01000 --recovery-key=N0nvYJ9sp+dczDbj4PWftUmJ3Wsn9xYyEtMEMh2D9TA= 0-12`导出需要恢复的扇区数据。
 
 - `f01000`替换为需要进行扇区恢复的节点号。
-- `recovery-key`为扇区恢复授权码，可以固定使用`N0nvYJ9sp+dczDbj4PWftUmJ3Wsn9xYyEtMEMh2D9TA=`。
+- `recovery-key`为扇区恢复授权码，可以参照 recovery-key 文件。
 - `0-12`为需要进行恢复的扇区号。可以是具体的扇区编号，也可以是区间，例如`4 5 7-9 20`表示要导出`4、5、7、8、9、20`号共6个扇区。要导出一个节点全部的扇区，可以设置为0-最大的扇区编号。
 
 命令执行成功后会在当前目录下面创建`sectors-t01000(Miner节点号).json`文件，如果其中有不存在的扇区，则会自动报出错误信息`precommit info does not exist`。
