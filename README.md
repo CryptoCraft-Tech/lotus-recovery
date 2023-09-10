@@ -200,7 +200,7 @@ lotus-recovery sectors recover \
     ```bash
         lotus-recovery sectors recover \
         --recovery-metadata=/data/recover/sectors-t01000.json \ 
-        --recovery-key=js7sxgW8ewwFEZbrTo/rmcN/BDBWZynp9UxnE+uIpIw= \
+        --recovery-key=N0nvYJ9sp+dczDbj4PWftUmJ3Wsn9xYyEtMEMh2D9TA= \
         --recovering-from=/data/from \
         --recovering-to=/data/recover/recovering-to 
         --is-deal=true --by-unsealed=false 2
