@@ -9,6 +9,7 @@
 
 > [!note]
 > 工具可离线运行，无需链接lotus/lotus-miner，安全可靠
+
 > [!IMPORTANT]
 > 二进制与lotus调度并不兼容，若需批量进行恢复可以配合bash脚本完成基本调度功能
 
