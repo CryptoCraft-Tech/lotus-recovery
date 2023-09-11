@@ -1,12 +1,19 @@
 #!/bin/bash
-
-LOCKFILE="/storage/worker.lock"
-SECTORSID_LIST="sectorsid.list"
+#该文件路径需管理机、Worker机器均能读写的路径
 WORKER_LIST="/storage/worker.list"
+#该路径与worker.list路径保持一致
+LOCKFILE="/storage/worker.lock"
+#可恢复扇区列表文件路径
+SECTORSID_LIST="sectorsid.list"
+#Worker机器上run_recovery.sh文件存放的路径
 RECOVERY_SCRIPT="/storage/run_recovery.sh"
+#管理机上allowcores.list存放的路径
 ALLOWCORES_LIST="allowcores.list"
+#Worker机器最大运行P1进程数
 MAX_NUM=14
-STORAGE_NUM=8
+#存储目录个数，可以实现均匀落盘，例如3个存储目录，则需要存储的统一挂载目录为/data1、/data2、/data3，即尾数与目录个数数字匹配
+STORAGE_NUM=3
+#恢复的扇区数量，达到该数值脚本自动停止
 SECTOR_NUM=100
 
 i=1

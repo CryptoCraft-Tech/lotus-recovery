@@ -238,7 +238,8 @@ lotus-recovery sectors recover \
 管理机负责恢复任务调度分配，即运行[manage.sh](/scripts/manage.sh)。管理机需要满足及填写的环境要求如下：
 
 - 可免密登录到其他进行恢复任务的Worker机器。
-- 可读取到`allowcores.list`并且可读写`worker.list`
+- 可读取到`allowcores.list`并且可读写`worker.list`。
+- 可读写需要恢复的扇区号文件列表。初始需要恢复的扇区号文件列表可以使用命令`lotus-miner proving faults | tail -n +3 | awk '{print $3}' > sectors_id.list`，**注意该文件包含所有已出错的扇区号，但并不代表这些扇区号可以直接进行恢复，需要去除无法找到unsealed或Car文件恢复源的扇区**（find_car.sh脚本中会生成一个unfind.list，即这个列表中的扇区未完整找到所有Car文件源）。
 
 ### 5.2 流程示例
 
@@ -251,10 +252,11 @@ lotus-recovery sectors recover \
    - [生成json文件](#1-扇区数据导出)。若使用Car文件恢复，通过脚本完成json文件中Car文件路径补充。
    - 根据Wroker机器情况，填写`allowcores.list`和`worker.list`。
    - 完成`manage.sh`和`run_recovery.sh`脚本中**参数的填写**。
+   - 准备妥当需要恢复的扇区号文件列表`sectors_id.list`。可参考[5.1 管理机配置](#51-管理机配置)的相关描述。
 3. 文件拷贝。
    - 拷贝`lotus-recovery`二进制到所有Worker机器`/usr/local/bin`目录下。
-   - 拷贝`manage.sh`和`allowcores.list`到管理机。
+   - 拷贝`manage.sh`、`allowcores.list`和`sectors_id.list`到管理机。
    - 拷贝`run_recovery.sh`和处理好的json到Worker机器。
    - 拷贝`worker.list`到管理机和Worker机器均可读写的路径（可以考虑放在持久化存储中）。
 4. 运行脚本。
-   管理机运行`manage.sh`即可完成调度其他Worker机器，无需其他操作。
+   管理机后台运行`manage.sh`即可自动完成调度其他Worker机器，无需其他操作。
