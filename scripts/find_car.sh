@@ -1,8 +1,12 @@
 #!/bin/bash
+#lotus-recovery sectors export命令导出的json文件路径
 JSON_FILE="$HOME/sectors-f0888866.json"
+#car文件存放路径
 CAR_PATH="/mnt/data*"
 
+#未全部找到car文件的扇区列表
 >unfind.list
+#car文件全部找到的扇区列表
 >prepare.list
 
 jq -c '.SectorInfos[]' "$JSON_FILE" | while read -r sector; do

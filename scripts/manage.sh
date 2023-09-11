@@ -7,6 +7,7 @@ RECOVERY_SCRIPT="/storage/run_recovery.sh"
 ALLOWCORES_LIST="allowcores.list"
 MAX_NUM=14
 STORAGE_NUM=8
+SECTOR_NUM=100
 
 i=1
 j=1
@@ -52,7 +53,7 @@ while read -r sectorid; do
     if [ "$i" -eq "$STORAGE_NUM" ]; then
         i=1
     fi
-    if [ "$j" -eq 3000 ]; then
+    if [ "$j" -eq "$SECTOR_NUM" ]; then
         break
     fi
     ((j++))
